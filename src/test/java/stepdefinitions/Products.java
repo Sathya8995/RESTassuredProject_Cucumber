@@ -22,13 +22,13 @@ public class Products {
     public void i_hit_the_url_of_the_api_endpoint(){
 
         RestAssured.baseURI = "https://fakestoreapi.com";
+        httpRequest = RestAssured.given();
 
     }
 
     @When("I pass the url of products in the request")
     public void i_pass_the_url_of_products_in_the_request() {
 
-        httpRequest = RestAssured.given();
         response = httpRequest.get("/products");
     }
 
@@ -50,12 +50,6 @@ public class Products {
 
         String s = jsnpath.getJsonObject("rating[0].rate").toString();
         assertEquals(rate,s);
-    }
-
-    @Given("I hit the url of the post product api endpoint")
-    public void i_hit_the_url_of_the_post_product_api_endpoint() {
-        RestAssured.baseURI = "https://fakestoreapi.com";
-
     }
 
     @And("I pass the request body of the product title {string}")
@@ -87,8 +81,15 @@ public class Products {
 
     @When("I pass the post url of products in the request")
     public void iPassThePostUrlOfProductsInTheRequest() {
-        httpRequest = RestAssured.given();
         httpRequest.body(requestParams.toJSONString());
         response = httpRequest.post("/products");
     }
+
+    @When("I pass the put url of products in the request {string}")
+    public void iPassThePutUrlOfProductsInTheRequestEndpoint(String endpoint) {
+        httpRequest.body(requestParams.toJSONString());
+        response = httpRequest.put("/products/"+endpoint);
+
+    }
+
 }
