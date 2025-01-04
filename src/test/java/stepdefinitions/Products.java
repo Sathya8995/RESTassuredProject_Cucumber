@@ -87,9 +87,13 @@ public class Products {
 
     @When("I pass the put url of products in the request {string}")
     public void iPassThePutUrlOfProductsInTheRequestEndpoint(String endpoint) {
-        httpRequest.body(requestParams.toJSONString());
+        //httpRequest.body(requestParams.toJSONString());
         response = httpRequest.put("/products/"+endpoint);
 
     }
 
+    @When("I pass the delete url of products in the request {string}")
+    public void iPassTheDeleteUrlOfProductsInTheRequestEndpoint(String endpoint) {
+        response = httpRequest.delete("/products/"+endpoint);
+    }
 }
