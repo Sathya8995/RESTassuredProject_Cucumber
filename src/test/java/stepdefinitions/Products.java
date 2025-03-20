@@ -21,6 +21,7 @@ public class Products {
     @Given("I hit the url of the api endpoint")
     public void i_hit_the_url_of_the_api_endpoint(){
 
+        //Adding Base URI
         RestAssured.baseURI = "https://fakestoreapi.com";
         httpRequest = RestAssured.given();
 
